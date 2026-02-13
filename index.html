@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Yassine Dlimi – Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --blue-dark:#38bdf8;
+  --bg-dark:#0f172a;
+  --text-dark:#f0f4f8;
+  --card-bg-dark:#1e293b;
+
+  --blue-light:#5fa8ff;
+  --bg-light:#ffffff;
+  --text-light:#333333;
+  --card-bg-light:#f0f4f8;
+}
+
+/* ===== BODY & DARK/LIGHT MODE ===== */
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  line-height:1.7;
+  scroll-behavior:smooth;
+  position:relative;
+  overflow-x:hidden;
+  background:var(--bg-dark);
+  color:var(--text-dark);
+  transition:0.3s;
+}
+body.light{
+  background:var(--bg-light);
+  color:var(--text-light);
+}
+body.light section{
+  background:var(--card-bg-light);
+  color:var(--text-light);
+}
+body.dark section{
+  background:var(--card-bg-dark);
+  color:var(--text-dark);
+}
+
+/* ===== BACKGROUND SHAPES ===== */
+body::before, body::after{
+  content:"";
+  position:fixed;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  opacity:0.1;
+  z-index:0;
+}
+body.dark::before{ background:var(--blue-dark);}
+body.dark::after{ background:var(--blue-dark);}
+body.light::before{ background:var(--blue-light);}
+body.light::after{ background:var(--blue-light);}
+body::before{ top:-100px; left:-80px;}
+body::after{ bottom:-120px; right:-100px; }
+
+/* ===== NAVBAR HERO ===== */
+.navbar{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  margin-bottom:20px;
+  position:relative;
+  z-index:2;
+}
+.navbar a{
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:6px;
+  font-weight:bold;
+  font-size:16px;
+  transition:0.3s;
+  display:inline-block;
+  animation:floatIcon 4s infinite alternate;
+}
+body.dark .navbar a{
+  background:var(--blue-dark);
+  color:white;
+}
+body.light .navbar a{
+  background:var(--blue-light);
+  color:white;
+}
+.navbar a:hover{ opacity:0.85; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes float{ 0%{transform:translateY(0);} 100%{transform:translateY(-10px);} }
+@keyframes floatIcon{ 0%{transform:translateY(0);} 100%{transform:translateY(-6px);} }
+@keyframes emojiBounce{ 0%{transform:translateY(0);} 50%{transform:translateY(-6px);} 100%{transform:translateY(0);} }
+
+/* ===== DARK/LIGHT BUTTON ===== */
+.toggle-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  z-index:1000;
+  transition:0.3s;
+}
+body.dark .toggle-btn{ background:var(--blue-dark); color:white; }
+body.light .toggle-btn{ background:var(--blue-light); color:white; }
+.toggle-btn:hover{ opacity:0.85; }
+
+/* ===== SECTIONS ===== */
+main{ padding:20px 5%; position:relative; z-index:1; }
+section{
+  position:relative;
+  padding:40px 20px;
+  border-radius:16px;
+  margin:30px auto;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  overflow:hidden;
+}
+
+/* ===== HEADINGS ===== */
+h2{ margin-bottom:20px; }
+h3{ margin-top:20px; }
+p{ animation:float 2s ease-in-out; }
+
+/* ===== FLEX ===== */
+.flex{ display:flex; gap:30px; align-items:center; justify-content:flex-start; flex-wrap:nowrap; }
+.flex.reverse{ flex-direction:row-reverse; }
+.flex img{ width:250px; max-width:100%; border-radius:16px; border:3px solid; transition:0.3s;}
+body.dark .flex img{ border-color:var(--blue-dark);}
+body.light .flex img{ border-color:var(--blue-light);}
+.flex div{ flex:1; }
+
+/* ===== VIDEO Reel 9:16 YouTube ===== */
+.video-reel{
+  width:260px;
+  height:325px; /* 4:5 ratio */
+  border-radius:16px;
+  border:4px solid;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+body.dark .video-reel{ border-color:var(--blue-dark); }
+body.light .video-reel{ border-color:var(--blue-light); }
+
+.video-reel img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.video-reel::after{
+  content:"▶";
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:70px;
+  color:white;
+  background:rgba(0,0,0,0.6);
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ===== PDF GRID FULL SCREEN ===== */
+.pdf-grid{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:20px;
+  overflow-x:auto;
+  padding-bottom:10px;
+  width:100%;
+}
+.pdf-card{
+  border-radius:14px;
+  padding:16px;
+  flex:0 0 250px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  transition:transform 0.3s, box-shadow 0.3s;
+  border:2px solid;
+}
+body.dark .pdf-card{ border-color:var(--blue-dark); background:var(--card-bg-dark); color:var(--text-dark);}
+body.light .pdf-card{ border-color:var(--blue-light); background:var(--card-bg-light); color:var(--text-light);}
+.pdf-card:hover{ transform:translateY(-4px); box-shadow:0 8px 22px rgba(0,0,0,0.3);}
+.pdf-card a{
+  text-decoration:none;
+  font-weight:bold;
+  margin-top:8px;
+  padding:6px 12px;
+  border-radius:6px;
+  transition:0.3s;
+}
+body.dark .pdf-card a{ background:var(--blue-dark); color:white;}
+body.light .pdf-card a{ background:var(--blue-light); color:white;}
+.pdf-card a:hover{ opacity:0.85; }
+
+/* ===== SKILLS & HOBBYS ===== */
+.skills-grid div, .hobbys-grid div{
+  font-weight:bold;
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(56,189,248,0.2);
+  animation:float 4s infinite alternate;
+}
+.skills-grid div span, .hobbys-grid div span{
+  font-size:28px;
+  display:inline-block;
+  animation:emojiBounce 2s infinite alternate;
+}
+
+/* ===== CONTACT ===== */
+.contact img{ width:150px; height:150px; border-radius:50%; border:3px solid; transition:0.3s;}
+body.dark .contact img{ border-color:var(--blue-dark);}
+body.light .contact img{ border-color:var(--blue-light);}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .flex, .flex.reverse{ flex-direction:column; text-align:center; }
+  .flex img{ margin-bottom:15px; }
+  .video-reel{ width:200px; height:360px; }
+  .pdf-grid{ flex-wrap:wrap; overflow-x:auto;}
+}
+@media(max-width:420px){
+  h2{ font-size:22px; }
+  .navbar a{ font-size:12px; padding:5px 10px; }
+}
+</style>
+</head>
+<body class="dark">
+
+<!-- DARK/LIGHT BUTTON -->
+<button class="toggle-btn" onclick="toggleMode()">🌙 / ☀️</button>
+
+<main>
+<!-- PAGE 1 HERO + NAVBAR -->
+<section id="home">
+  <div class="navbar">
+    <a href="#home">🏠</a>
+    <a href="#leidenschaft">❤️</a>
+    <a href="#bescheinigungen">📄</a>
+    <a href="#weiterbildung">🎓</a>
+    <a href="#berufserfahrung">💼</a>
+    <a href="#skills">⭐</a>
+    <a href="#kontakt">✉️</a>
+  </div>
+  
+  <div class="flex reverse">
+    <div>
+      <h2>Hallo, ich bin Yassine Dlimi</h2>
+      <p>Ich bin motiviert, zuverlässig und auf der Suche nach einer Ausbildung als Berufskraftfahrer.</p>
+    </div>
+    <img src="assets/fotos/profil2.jpg" alt="Foto">
+  </div>
+</section>
+
+<!-- LEIDENSCHAFT -->
+<section id="leidenschaft">
+  <div class="flex reverse">
+    <img src="assets/fotos/img1.jpg" alt="LKW">
+    <div>
+      <h2>Meine Leidenschaft</h2>
+      <p>Meine Leidenschaft für LKWs begann schon in meiner Kindheit, als ich meinen Vater begleitete, der als LKW-Fahrer durch ganz Marokko unterwegs war.
+Daraus entwickelte sich meine Begeisterung für Lastkraftwagen sowie die Freude daran, neue Regionen und Städte zu entdecken.
+Heute ist es mein Traum, mit dem LKW die Welt zu bereisen – mit Vertrauen, Verantwortung und Engagement.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO Reel YouTube -->
+<section>
+  <h2>Über mich (Video)</h2>
+  <div class="flex">
+    <a class="video-reel"
+       href="https://youtu.be/-uXkPd6-_hM?si=_k_8dS2Vyqa-0Ajo"
+       target="_blank">
+       <img src="assets/fotos/IMG_9900.jpeg" alt="Video">
+    </a>
+    <div>
+      <p>Hier zeige ich ein kurzes Video über meine Motivation und Fähigkeiten als zukünftiger Berufskraftfahrer.</p>
+    </div>
+  </div>
+</section>
+<!-- BESCHEINIGUNGEN PDF -->
+<section id="bescheinigungen">
+  <h2>Zeugnisse</h2>
+  <div class="pdf-grid">
+    <div class="pdf-card"><span>Zertifikat B1 (3 Modelle)</span><a href="assets/pdf/Zertifikat-B1.pdf" target="_blank">Öffnen</a></div>
+    <div class="pdf-card"><span>Schulbescheinigung</span><a href="assets/pdf/Schulbescheinigung.pdf" target="_blank">Öffnen</a></div>
+    <div class="pdf-card"><span>Führerschein Klasse B</span><a href="assets/pdf/Führerschein (de).pdf" target="_blank">Öffnen</a></div>
+  </div>
+</section>
+
+<!-- WEITERBILDUNG -->
+<section id="weiterbildung">
+  <h2>Weiterbildung</h2>
+  <div class="pdf-grid">
+    <div class="pdf-card"><span>Logistik-Kurs</span><a href="assets/pdf/Logistik.pdf" target="_blank">Öffnen</a></div>
+    <div class="pdf-card"><span>Grundlagen des LKWs</span><a href="assets/pdf/Grundlagen.pdf" target="_blank">Öffnen</a></div>
+    <div class="pdf-card"><span>Verkehrssicherheitprogramm</span><a href="assets/pdf/Verkehrssicherheit.pdf" target="_blank">Öffnen</a></div>
+    <div class="pdf-card"><span>Motorkühlungskurs</span><a href="assets/pdf/Motorkühlung.pdf" target="_blank">Öffnen</a></div>
+  </div>
+</section>
+
+<!-- BERUFSERFAHRUNG -->
+<section id="berufserfahrung">
+  <h2>Berufserfahrung</h2>
+  <div class="flex experience">
+    <img src="assets/fotos/arbeit.JPG" alt="Erfahrung">
+    <div><p>Von 2016 bis 2019 habe ich als Beifahrer meinen Vater in den Ferien und an den Wochenenden begleitet,dabei habe ich viele Fähigkeiten gelernt,unter anderem :
+      <ul>
+        <li> Das Be-und Entladung</li>
+        <li> die Ladungssicherung</li>
+        <li> die Reinigung des LKWs</li>
+        <li> der Umgang mit Kunden</li>
+      </ul>
+    </p></div>
+  </div>
+</section>
+
+<!-- SKILLS UND HOBBYS + PDF LEBENSLAUF & ANSCHREIBEN -->
+<section id="skills">
+  <h2>Skills, Hobbys & Dokumente</h2>
+  
+  <h3>Skills</h3>
+  <div class="skills-grid" style="display:flex; flex-wrap:wrap; gap:15px;">
+    <div><span>💪</span>Zuverlässig</div>
+    <div><span>🛠️</span>Belastbar</div>
+    <div><span>⚙️</span>Technisches Denken</div>
+    <div><span>💡</span>Orientierung</div>
+    <div><span>💬</span>Kommunikation</div>
+    <div><span>💻</span>IT Skills</div>
+  </div>
+  
+  <h3>Hobbys</h3>
+  <div class="hobbys-grid" style="display:flex; flex-wrap:wrap; gap:15px;">
+    <div><span>🎨</span>Design</div>
+    <div><span>⚽</span>Fußball</div>
+    <div><span>✈️</span>Reisen</div>
+    <div><span>✏️</span>Zeichnen</div>
+  </div>
+
+  <h3>Lebenslauf & Anschreiben</h3>
+  <div class="pdf-grid">
+    <div class="pdf-card"><span>Lebenslauf</span><a href="assets/pdf/Lebenslauf.pdf" target="_blank">Öffnen</a></div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <h2>Kontakt</h2>
+  <div class="flex contact">
+    <img src="assets/fotos/profil1.jpg" alt="Kontaktfoto" width="50" height="45">
+    <div>
+      <p>📞 <strong>Telefon:</strong> +212 6 41 90 68 20</p>
+      <p>✉️ <strong>E-Mail:</strong> dlimiyassine6@gmail.com</p>
+      <p>📍 <strong>Ort:</strong>El Attaouia Stadt, Marokko</p>
+
+      <p><strong>Ich freue mich auf Ihre Rückmeldung.</strong></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle("light");
+  document.body.classList.toggle("dark");
+}
+</script>
+</body>
+</html>
